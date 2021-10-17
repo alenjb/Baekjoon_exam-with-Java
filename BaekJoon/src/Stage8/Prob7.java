@@ -13,17 +13,21 @@ public class Prob7 {
 
 		int ch= Integer.parseInt(br.readLine());
 		int five=ch/5;
+		int a=0;
 		if((ch%5) %3 !=0) {
-			for(int i=ch/5; i>0; i++) {
-				int a= ch-5*i;
-				if(a %3==0) {
+			for(int i=ch/5; i>0; i--) {
+				a= ch-5*i;
+				if(a>0&&a %3==0) {
 					bw.write( (i+ a/3)+"");
 					break;
 				}
 			}
-			if(ch%3!=0) {bw.write(-1+"");}
+			if(a>0&&a%3==0) {}
+			else if(a<=0||ch%3!=0) {bw.write(-1+"");
+}
 			else {
 				bw.write(ch/3+"");
+
 			}
 		}
 		else {
