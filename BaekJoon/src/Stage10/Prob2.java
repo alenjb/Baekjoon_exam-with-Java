@@ -14,7 +14,6 @@ public class Prob2 {
 		bw.close();
 	}
 	static int Fibonacci(int num) {
-		int result=0;
 		if(num==0) {
 			return 0;
 		}
@@ -22,9 +21,7 @@ public class Prob2 {
 			return 1;
 		}
 		else{
-			result= Fibonacci(num-1)+Fibonacci(num-2);
-			num--;
+			return Fibonacci(num-1)+Fibonacci(num-2);
 		}
-		return result;
 	}
 }
