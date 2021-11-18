@@ -1,47 +1,52 @@
 package Stage10;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 public class Prob3 {
+	static char arr[][];
 	public static void main(String[] args) throws Exception{
 		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw= new BufferedWriter(new OutputStreamWriter(System.out));
 		int num= Integer.parseInt(br.readLine());
-		String [][]arr= new String [num][num];
-		//별 다 찍어놓기
-		for(int i=0; i<num; i++) {
-			for(int j=0; j<num; j++) {
-				arr[i][j]="*";
-			}
+		arr= new char [num][num];
+		StarHole(num, 0, 0, false);
+
+		for(int i=0; i<arr[0].length; i++) {
+			for(int j=0; j<arr[0].length; j++) {
+				bw.write(arr[i][j]);
+			}bw.write("\n");
 		}
-		//몇 제곱
-		int t=0;
-		for(; num!=1; ) {
-			num=num/3; t++;
+		bw.close();
+	}
+	static void  StarHole(int num, int x, int y, boolean blank) {
+	
+		if(blank) {
+			for(int i=x; i<x+num; i++) {
+				for(int j=y; j<y+num; j++) {
+					arr[i][j]=' ';
+				}}
+		}
+		else if(num==1) {
+			arr[x][y]='*';
+		}
+		else {
+			int num2= num/3;
+			int count=0;
+			for(int i=x; i<x+num; i+=num2) {
+				for(int j=y; j<y+num; j+=num2) {
+					count++;
+					if(count==5) {
+						StarHole(num2, i, j, true);
+					}
+					else {
+						StarHole(num2, i, j, false);						
+					}
+				}
+				
+			}
 		}
 
-		StarHole(t, arr);
-		
-		for(int i=0; i<num; i++) {
-			for(int j=0; j<num; j++) {
-				System.out.println(arr[i][j]);
-			}}
-		
-		
-		
-	}
-	static String[][] StarHole(int num, String arr[][]) {
-		if(num==0) return arr;
-		for(int i=3*num; i<3*(num+1); i++) {
-			for(int j=3*num; j<3*(num+1); j++) {
-				arr[i][j]=" ";
-			}
-			arr=StarHole(num-1, arr);
-		}
-		return arr;
-		
 	}
 }
