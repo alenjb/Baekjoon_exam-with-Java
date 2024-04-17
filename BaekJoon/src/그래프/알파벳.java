@@ -11,6 +11,7 @@ public class 알파벳 {
     static char [] [] arr;
     static int [] dx = {1, 0, -1, 0};//우 하 좌 상
     static int [] dy = {0, 1, 0, -1};
+    static boolean [] visited;
     static int result;
     static int R;
     static int C;
@@ -22,7 +23,7 @@ public class 알파벳 {
         R = Integer.parseInt(st.nextToken());
         C = Integer.parseInt(st.nextToken());
         arr = new char[R+1][C+1];
-        boolean [] visited = new boolean[26]; // 알파벳 배열
+        visited = new boolean[26]; // 알파벳 배열
 
         for(int i=1; i<=R; i++){
             String line = br.readLine();
@@ -30,20 +31,17 @@ public class 알파벳 {
                 arr[i][j] = line.charAt(j-1);
             }
         }
-        bfs(1,1,1,visited);
+        bfs(1,1,0);
+        result = Math.max(1, result);
         bw.write(result+"\n");
         bw.flush();
 
 
 
     }
-    static void bfs(int x, int y, int count, boolean [] visited){
+    static void bfs(int x, int y, int count){
         int ch = arr[y][x];
         int val = ch -65;
-        if(visited[val]) return;
-        boolean [] visit = Arrays.copyOf(visited, visited.length);
-
-        visit[val] = true;
         if(count> result) {
             result = count;
         }
@@ -51,7 +49,11 @@ public class 알파벳 {
             int nowx = x+dx[i];
             int nowy = y+dy[i];
             if(nowy>=1 && nowx>=1 && nowx<=C && nowy <=R){
-                bfs(nowx, nowy, count+1, visit);
+                if(!visited[val]){
+                    visited[val] = true;
+                    bfs(nowx, nowy, count+1);
+                    visited[val] = false;
+                }
             }
         }
     }
