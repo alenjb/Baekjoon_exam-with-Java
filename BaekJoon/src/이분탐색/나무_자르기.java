@@ -30,19 +30,19 @@ public class 나무_자르기 {
         long right = max+1;
         long mid;
         long answer = 0;
-        long scount=0;
         while(left<right){
             mid = (left + right) /2;
 
             long count = 0;
             for(int i=0; i<N; i++){
-                count = count + arr[i] - mid;
+                if(arr[i] > mid){
+                    count = count + arr[i] - mid;
+                }
             }
             // 절단 가능
             if(count >= M){
                 left = mid+1;
                 answer = mid;
-                scount = count;
             }
 
             //절단 실패
@@ -51,8 +51,8 @@ public class 나무_자르기 {
             }
         }
 
-        System.out.println(answer);
-        System.out.println("scount = " + scount);
+        bw.write(answer+"");
+        bw.flush();
 
 
     }
