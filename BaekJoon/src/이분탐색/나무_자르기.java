@@ -27,10 +27,9 @@ public class 나무_자르기 {
 
         // 이분 탐색
         long left = 0;
-        long right = max+1;
+        long right = max;
         long mid;
-        long answer = 0;
-        while(left<right){
+        while(left+1<right){
             mid = (left + right) /2;
 
             long count = 0;
@@ -41,8 +40,7 @@ public class 나무_자르기 {
             }
             // 절단 가능
             if(count >= M){
-                left = mid+1;
-                answer = mid;
+                left = mid;
             }
 
             //절단 실패
@@ -51,7 +49,7 @@ public class 나무_자르기 {
             }
         }
 
-        bw.write(answer+"");
+        bw.write(left+"");
         bw.flush();
 
 
