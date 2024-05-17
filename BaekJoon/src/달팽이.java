@@ -23,9 +23,10 @@ public class 달팽이 {
             if(i == 1) continue;
             calculate(i/2);
         }
+
         for(int i=0; i<n; i++){
             for(int j=0; j<n; j++){
-                sb.append(arr[i][j]+" "); // 배열의 모든 요소 출력
+                sb.append(arr[i][j]).append(" "); // 배열의 모든 요소 출력
             }
             sb.append("\n");
         }
@@ -38,6 +39,11 @@ public class 달팽이 {
         // 위로 1 만큼 이동
         y = y-1;
         arr[y][x] = ++count;
+        if(count == findNum){
+            resultY = y+1;
+            resultX = x +1;
+        }
+
 
         // 오른쪽으로 2 * n -1 만큼 이동
         for(int k=1; k<=2*depth-1; k++){
@@ -47,6 +53,7 @@ public class 달팽이 {
                 resultY = y+1;
                 resultX = x +1;
             }
+
         }
 
         // 아래로 2n 만큼 이동
