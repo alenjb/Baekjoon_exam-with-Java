@@ -1,3 +1,5 @@
+package 동적프로그래밍;
+
 import java.io.*;
 
 public class 달팽이 {
