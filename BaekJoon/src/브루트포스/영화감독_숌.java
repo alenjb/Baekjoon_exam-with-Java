@@ -1,3 +1,5 @@
+package 브루트포스;
+
 import java.util.Scanner;
 
 public class 영화감독_숌 {

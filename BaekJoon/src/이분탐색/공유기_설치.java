@@ -27,19 +27,17 @@ public class 공유기_설치 {
         Arrays.sort(arr);
 
         long left = 1;
-        long right = arr[(int)(N-1)] - arr[0] +1;
-        long answer = 0;
+        long right = arr[(int)(N-1)] - arr[0]+1;
         long mid = 0;
-        while(left < right){
+        while(left +1 < right){
             mid = (left + right) / 2;
             int result = check(mid);
             if(result >= M){
-                answer = mid;
-                left = mid +1;
+                left = mid;
             }else right = mid;
         }
 
-        bw.write(answer+"");
+        bw.write(left+"");
         bw.flush();
 
 
